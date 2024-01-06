@@ -1,6 +1,7 @@
 import commands from "./commands.js";
 
 const history = [];
+let historyIndex = 0;
 
 const clear = () => {
   const body = document.querySelector(".body");
@@ -15,14 +16,12 @@ const showInput = () => {
   const inputMarkup = `
           <p>soham@Soham's-Portfolio</p><span>: ~$</span>
           <input type="text" name="command" id="command" />`;
-  
+
   const input = document.createElement("div");
   input.classList.add("input");
   input.innerHTML = inputMarkup;
 
   body.appendChild(input);
-
-  focus();
 
   const commands = document.querySelectorAll("#command");
   const lastCommand = commands[commands.length - 1];
@@ -39,11 +38,11 @@ const showInput = () => {
       case "ArrowUp":
         event.preventDefault();
         if (history.length > 0)
-          event.target.value = history[history.length - 1];
+          event.target.value = history[--historyIndex] || "";
         break;
       case "ArrowDown":
         event.preventDefault();
-        event.target.value = "";
+        event.target.value = history[++historyIndex] || "";
         break;
     }
   });
@@ -83,6 +82,10 @@ window.onload = function () {
       setTimeout(addWord, 0);
     } else {
       showInput();
+      var h2 = document.createElement("h2");
+      h2.textContent = `Type "help" to get started`;
+      h2.classList.add("help");
+      pre.parentNode.insertBefore(h2, pre.nextSibling);
     }
   }
   addWord();
