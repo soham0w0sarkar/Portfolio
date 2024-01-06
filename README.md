@@ -2,9 +2,9 @@ Welcome to my GitHub portfolio! This repository showcases my work with JavaScrip
 
 
 Technologies Used:
-JavaScript
-HTML
-CSS
+JavaScript,
+HTML,
+CSS.
 
 How to Run:
 Clone this repository: git clone https://github.com/soham0w0sarkar/portfolio.git
