@@ -14,7 +14,11 @@ body {
   align-items: center;
 }
 
-.nav-bottom {
+.help {
+  color: white;
+}
+
+/* .nav-bottom {
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -22,9 +26,20 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0);
+  backdrop-filter: blur(15px);
+  background-color: rgba(0, 0, 0, 0.612);
   color: white;
 }
+
+.nav-bottom i {
+  width: 5%;
+  height: 100%;
+  position: absolute;
+  background-image: url("./windows-logo-logok-0.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  left: 0;
+} */
 
 .main-container {
   width: 95%;
@@ -95,6 +110,7 @@ pre {
 }
 
 .body .input {
+  margin-top: 10px;
   color: green;
   display: flex;
   justify-content: flex-start;
