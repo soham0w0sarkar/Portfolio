@@ -68,7 +68,9 @@ const loadimage = () => {
   const image = new Image();
   image.src = "./bg.jpg";
   image.onload = () => {
-    document.querySelector("body").style.backgroundImage = `url(${image.src})`;
+    const backgroundContainer = document.querySelector(".background");
+    backgroundContainer.style.transition = "background-image 2s ease-in-out";
+    backgroundContainer.style.backgroundImage = `url(${image.src})`;
   };
 };
 
