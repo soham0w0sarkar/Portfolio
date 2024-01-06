@@ -39,6 +39,7 @@ pre {
   color: white;
   font-family: monospace;
   overflow: auto;
+  font-size: 0.8rem;
 }
 
 .head {
@@ -69,7 +70,6 @@ pre {
   height: 16px;
   cursor: pointer;
   border-radius: 50%;
-  background-color: black;
 }
 
 .minimise {
@@ -88,7 +88,7 @@ pre {
   width: 100%;
   height: 90%;
   padding: 20px;
-  overflow: auto;
+  overflow-y: scroll;
   display: flex;
   flex-direction: column;
   transition: all smooth;
@@ -98,14 +98,35 @@ pre {
   color: green;
   display: flex;
   justify-content: flex-start;
+  font-size: 1.5rem;
+}
+
+.body .input span {
+  color: white;
 }
 
 .body .input input {
   margin-left: 10px;
-  width: fit-content;
+  width: 60%;
   background-color: transparent;
   font-size: 1.5rem;
   border: none;
   outline: none;
   color: white;
+}
+
+.body .output {
+  color: white;
+  font-size: 1.5rem;
+  margin: 10px;
+}
+
+.body .output ul {
+  list-style: none;
+  margin: 20px;
+}
+
+.body .output a {
+  color: white;
+  text-decoration: none;
 }
