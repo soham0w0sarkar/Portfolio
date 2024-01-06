@@ -9,7 +9,7 @@ body {
   height: 100vh;
   background-image: url("./bg-low.jpg");
   background-size: cover;
-  transition: background smooth 0.5s;
+  transition: background 1s ease;
   display: flex;
   justify-content: center;
   align-items: center;
