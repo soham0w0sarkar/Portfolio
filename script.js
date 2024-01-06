@@ -1,18 +1,15 @@
 import commands from "./commands.js";
-
+const body = document.querySelector(".body");
 const history = [];
 let historyIndex = 0;
 
 const clear = () => {
-  const body = document.querySelector(".body");
   const pre = body.querySelector("pre");
   body.innerHTML = "";
   body.appendChild(pre);
 };
 
 const showInput = () => {
-  const body = document.querySelector(".body");
-
   const inputMarkup = `
           <p>soham@Soham's-Portfolio</p><span>: ~$</span>
           <input type="text" name="command" id="command" />`;
@@ -49,8 +46,6 @@ const showInput = () => {
 };
 
 const showOutput = (command) => {
-  const body = document.querySelector(".body");
-
   if (command === "clear") {
     clear();
     showInput();
@@ -69,6 +64,14 @@ const showOutput = (command) => {
   showInput();
 };
 
+const loadimage = () => {
+  const image = new Image();
+  image.src = "./bg.jpg";
+  image.onload = () => {
+    document.querySelector("body").style.backgroundImage = `url(${image.src})`;
+  };
+};
+
 window.onload = function () {
   var pre = document.querySelector("pre");
   var text = pre.textContent;
@@ -82,10 +85,11 @@ window.onload = function () {
       setTimeout(addWord, 0);
     } else {
       showInput();
-      var h2 = document.createElement("h2");
+      const h2 = document.createElement("h2");
       h2.textContent = `Type "help" to get started`;
       h2.classList.add("help");
       pre.parentNode.insertBefore(h2, pre.nextSibling);
+      loadimage();
     }
   }
   addWord();
