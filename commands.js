@@ -48,9 +48,56 @@ const commands = (command) => {
       break;
 
     default:
-      return `Command not found: <span style="color:red">${command}</span>`;
+      return `Command not found: <span style="color:red">${command}</span><br>
+            ${stringMatching(command)}<br>
+            Type <span style="color:orange">help</span> to see available commands`;
       break;
   }
+};
+
+const stringMatching = (input) => {
+  const availableCommands = [
+    "help",
+    "about",
+    "skills",
+    "education",
+    "contact",
+    "socials",
+    "clear",
+  ];
+
+  const closestMatch = availableCommands.reduce(
+    (closest, command) => {
+      const similarity = commandSimilarity(input, command);
+      return similarity > closest.similarity
+        ? { command, similarity }
+        : closest;
+    },
+    { command: null, similarity: 0 }
+  );
+
+  if (closestMatch.similarity > 0) {
+    return `Did you mean: <span style="color:orange">${closestMatch.command}</span>`;
+  }
+
+  return "";
+};
+
+const commandSimilarity = (input, command) => {
+  const inputLower = input.toLowerCase();
+  const commandLower = command.toLowerCase();
+
+  let similarity = 0;
+
+  for (let i = 0; i < Math.min(inputLower.length, commandLower.length); i++) {
+    if (inputLower[i] === commandLower[i]) {
+      similarity++;
+    } else {
+      break;
+    }
+  }
+
+  return similarity / Math.max(inputLower.length, commandLower.length);
 };
 
 export default commands;
