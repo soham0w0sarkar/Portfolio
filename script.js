@@ -1,5 +1,6 @@
-import commands from "./commands.js";
-import stringMatching from "./suggestCommand.js";
+import commands from "./scripts/commands.js";
+import stringMatching from "./scripts/suggestCommand.js";
+
 const body = document.querySelector(".body");
 const history = [];
 let historyIndex = 0;
