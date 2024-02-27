@@ -6,6 +6,7 @@
         document.body.style.backgroundSize = 'cover';
     });
 </script>
+
 <svelte:head>
     <title>Portfolio</title>
 </svelte:head>
