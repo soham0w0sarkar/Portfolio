@@ -13,4 +13,4 @@
 	<title>Portfolio</title>
 </svelte:head>
 
-<div class="w-full h-full flex justify-center items-center p-4"><Window/></div>
+<div class="w-full h-full flex justify-center items-center p-4"><Window /></div>

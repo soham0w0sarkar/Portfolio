@@ -5,70 +5,72 @@
 	let showSizeButtonIcon = false;
 	let showMinimiseButtonIcon = false;
 
-    let open = true;
-    let maximise = true;
+	let open = true;
+	let maximise = true;
 </script>
 
 {#if open}
-<div
-	class="flex justify-center items-center h-{maximise ? '1/2' : 'full'} w-{maximise ? '1/2' : 'full'} variant-glass-surface rounded-md overflow-hidden"
->
-	<div class="w-full h-10 fixed top-0 variant-filled-surface p-2">
-		<div class="flex justify-between items-center h-full w-14">
-			<button
-				class="w-4 h-4 bg-red-500 rounded-full flex justify-center items-center shadow-md"
-                on:click={() => {
-                    open = false;
-                }}
-				on:mouseenter={() => {
-					showCloseButtonIcon = true;
-				}}
-				on:mouseleave={() => {
-					showCloseButtonIcon = false;
-				}}
+	<div
+		class="flex justify-center items-center h-{maximise ? '1/2' : 'full'} w-{maximise
+			? '1/2'
+			: 'full'} variant-glass-surface rounded-md overflow-hidden"
+	>
+		<div class="w-full h-10 fixed top-0 variant-filled-surface p-2">
+			<div class="flex justify-between items-center h-full w-14">
+				<button
+					class="w-4 h-4 bg-red-500 rounded-full flex justify-center items-center shadow-md"
+					on:click={() => {
+						open = false;
+					}}
+					on:mouseenter={() => {
+						showCloseButtonIcon = true;
+					}}
+					on:mouseleave={() => {
+						showCloseButtonIcon = false;
+					}}
 				>
-                    {#if showCloseButtonIcon}
-                        <IconX size={12} stroke={3} color={'black'} />
-                    {/if}
-            </button>
-			<button
-                on:click={() => {
-                    maximise = !maximise;
-                    showSizeButtonIcon = false;
-                }}
-				class="w-4 h-4 bg-green-500 rounded-full ml-1 flex justify-center items-center shadow-md"
-				on:mouseenter={() => {
-					showSizeButtonIcon = true;
-				}}
-				on:mouseleave={() => {
-					showSizeButtonIcon = false;
-				}}
+					{#if showCloseButtonIcon}
+						<IconX size={12} stroke={3} color={'black'} />
+					{/if}
+				</button>
+				<button
+					on:click={() => {
+						maximise = !maximise;
+						showSizeButtonIcon = false;
+					}}
+					class="w-4 h-4 bg-green-500 rounded-full ml-1 flex justify-center items-center shadow-md"
+					on:mouseenter={() => {
+						showSizeButtonIcon = true;
+					}}
+					on:mouseleave={() => {
+						showSizeButtonIcon = false;
+					}}
 				>
-                    {#if showSizeButtonIcon}
-                        {#if maximise}
-                            <IconMaximize size={12} stroke={3} color={'black'} />
-                        {:else}
-                            <IconMinimize size={12} stroke={3} color={'black'} />
-                        {/if}  
-                    {/if}
-            </button>
-			<button
-				class="w-4 h-4 bg-yellow-500 rounded-full ml-1 flex justify-center items-center shadow-md"
-                on:click={(e) => {
-                    open = false;                   
-                }}
-				on:mouseenter={() => {
-					showMinimiseButtonIcon = true;
-				}}
-				on:mouseleave={() => {
-					showMinimiseButtonIcon = false;
-				}}
+					{#if showSizeButtonIcon}
+						{#if maximise}
+							<IconMaximize size={12} stroke={3} color={'black'} />
+						{:else}
+							<IconMinimize size={12} stroke={3} color={'black'} />
+						{/if}
+					{/if}
+				</button>
+				<button
+					class="w-4 h-4 bg-yellow-500 rounded-full ml-1 flex justify-center items-center shadow-md"
+					on:click={(e) => {
+						open = false;
+					}}
+					on:mouseenter={() => {
+						showMinimiseButtonIcon = true;
+					}}
+					on:mouseleave={() => {
+						showMinimiseButtonIcon = false;
+					}}
 				>
-                    {#if showMinimiseButtonIcon}
-                        <IconMinus size={12} stroke={3} color={'black'} />
-                    {/if}
-            </button>
+					{#if showMinimiseButtonIcon}
+						<IconMinus size={12} stroke={3} color={'black'} />
+					{/if}
+				</button>
+			</div>
 		</div>
 	</div>
-</div>
 {/if}
