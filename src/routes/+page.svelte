@@ -1,4 +1,5 @@
 <script>
+	import Sidebar from './../components/sidebar.svelte';
 	import Window from '../components/window.svelte';
 	import { onMount } from 'svelte';
 
@@ -13,4 +14,5 @@
 	<title>Portfolio</title>
 </svelte:head>
 
+<Sidebar />
 <div class="w-full h-full flex justify-center items-center p-4"><Window /></div>
