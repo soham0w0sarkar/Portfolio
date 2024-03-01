@@ -10,7 +10,7 @@
 
 <div
 	class="flex flex-col items-start h-{maximise ? '1/2' : 'full'} w-{maximise
-		? '1/2' 
+		? '1/2'
 		: 'full'} variant-glass-surface rounded-lg overflow-hidden transition-all duration-200 ease-in-out"
 >
 	<div class="w-full h-fit variant-filled-surface p-2">
@@ -31,26 +31,26 @@
 					{/if}
 				</button>
 				<button
-				class="w-4 h-4 bg-green-500 rounded-full mr-2 flex justify-center items-center shadow-md"
-				on:click={() => {
-					maximise = !maximise;
-					showSizeButtonIcon = false;
-				}}
-				on:mouseenter={() => {
-					showSizeButtonIcon = true;
-				}}
-				on:mouseleave={() => {
-					showSizeButtonIcon = false;
-				}}
-			>
-				{#if showSizeButtonIcon}
-					{#if maximise}
-						<IconMaximize size={12} stroke={3} color={'black'} />
-					{:else}
-						<IconMinimize size={12} stroke={3} color={'black'} />
+					class="w-4 h-4 bg-green-500 rounded-full mr-2 flex justify-center items-center shadow-md"
+					on:click={() => {
+						maximise = !maximise;
+						showSizeButtonIcon = false;
+					}}
+					on:mouseenter={() => {
+						showSizeButtonIcon = true;
+					}}
+					on:mouseleave={() => {
+						showSizeButtonIcon = false;
+					}}
+				>
+					{#if showSizeButtonIcon}
+						{#if maximise}
+							<IconMaximize size={12} stroke={3} color={'black'} />
+						{:else}
+							<IconMinimize size={12} stroke={3} color={'black'} />
+						{/if}
 					{/if}
-				{/if}
-			</button>
+				</button>
 				<button
 					class="w-4 h-4 bg-red-500 rounded-full flex justify-center items-center shadow-md"
 					on:mouseenter={() => {
@@ -68,7 +68,6 @@
 		</div>
 	</div>
 	<div class="w-full h-32 p-2">
-		<slot/>
+		<slot />
 	</div>
 </div>
-
