@@ -67,7 +67,7 @@
 			</span>
 		</div>
 	</div>
-	<div class="w-full h-32 p-2">
+	<div class="w-full h-fit p-2">
 		<slot />
 	</div>
 </div>
