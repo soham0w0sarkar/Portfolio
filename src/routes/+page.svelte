@@ -1,6 +1,5 @@
 <script>
-	import Window from '../components/window.svelte';
-	import Terminal from '../components/terminal.svelte';
+	import { Window , Terminal} from '$lib';
 </script>
 
 <svelte:head>
