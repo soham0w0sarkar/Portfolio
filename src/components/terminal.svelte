@@ -1,59 +1,67 @@
 <script>
-	import { IconPoint, IconCircleCheck, IconCircleX } from '@tabler/icons-svelte';
-	import { onMount, tick } from 'svelte';
+    import { IconPoint, IconCircleCheck, IconCircleX } from '@tabler/icons-svelte';
+    import { onMount, tick } from 'svelte';
 
+    /**
+     * @type {string[]}
+     */
+    let commandHistory = [];
+    /**
+     * @type {number}
+     */
+    let currentCommand = commandHistory.length;
 
-	/**
-	 * The input command from the user.
-	 * @type {Array<string>}
-	 */
-	let commandHistory = [];
-	let currentCommand = commandHistory.length;
+    /**
+     * @typedef {Object} CommandLine
+     * @property {string} command
+     * @property {string} output
+     * @property {'current' | 'success' | 'error'} status
+     */
 
-	/**
-	 * The command line.
-	 * @type {Array<{command: string, output: string, status: string}>}
-	 */
-	let commandLine = [
-		{
-			command: '',
-			output: '',
-			status: 'current'
-		}
-	];
+    /**
+     * @type {CommandLine[]}
+     */
+    let commandLine = [
+        {
+            command: '',
+            output: '',
+            status: 'current'
+        }
+    ];
 
-	/**
-	 * the input element.
-	 * @type {NodeListOf<HTMLInputElement>}
-	 */
-	let inputElements;
-	
-	/**
-	 * A mapping of commands to their outputs.
-	 * @type {Object.<string, string>}
-	 */
-	const commandOutputSet = {
-		clear: 'clear',
-		portfolio: 'portfolio',
-		about: 'about',
-		contact: 'contact',
-		skills: 'skills',
-		projects: 'projects',
-		education: 'education',
-		experience: 'experience',
-		resume: 'resume',
-		exit: 'exit'
-	};
+    /**
+     * @type {NodeListOf<HTMLInputElement>}
+     */
+    let inputElements;
 
-	const focus = () => {
-		inputElements = document.querySelectorAll('.inputs');
-		inputElements[inputElements.length - 1].focus();
-	}
+    /**
+     * @type {Record<string, string>}
+     */
+    const commandOutputSet = {
+        clear: 'clear',
+        portfolio: 'portfolio',
+        about: 'about',
+        contact: 'contact',
+        skills: 'skills',
+        projects: 'projects',
+        education: 'education',
+        experience: 'experience',
+        resume: 'resume',
+        exit: 'exit'
+    };
 
-	/**
-	 * Handles the command entered by the user.
-	 * @param {string} command The command entered by the user.
-	 */
+    /**
+     * @returns {void}
+     */
+    const focus = () => {
+        inputElements = document.querySelectorAll('.inputs');
+        inputElements[inputElements.length - 1].focus();
+    }
+
+    /**
+     * @param {string} command
+     * @returns {void}
+     */
 	const handleCommand = (command) => {
 		if (command === 'clear') {
 			commandLine = [
@@ -79,17 +87,12 @@
 	};
 
 	/**
-	 * The current time.
 	 * @type {Date}
 	 */
 	const currentTime = new Date();
 	const hours = currentTime.getHours().toString().padStart(2, '0');
 	const minutes = currentTime.getMinutes().toString().padStart(2, '0');
 	const formattedTime = `${hours}:${minutes}`;
-
-	$: currentCommand = commandHistory.length;
-	$: console.log(commandHistory);
-	$: console.log(currentCommand);
 
 
 	onMount(() => {
@@ -108,13 +111,13 @@
 			
 			if (e.key === 'ArrowUp') {
 				if (currentCommand > 0) {
-					commandLine[commandLine.length - 1].command = commandHistory[currentCommand--];
+					commandLine[commandLine.length - 1].command = commandHistory[--currentCommand];
 				}
 			}
 
 			if (e.key === 'ArrowDown') {
 				if (currentCommand < commandHistory.length - 1) {
-					commandLine[commandLine.length - 1].command = commandHistory[currentCommand++];
+					commandLine[commandLine.length - 1].command = commandHistory[++currentCommand];
 				}
 			}
 		});
