@@ -86,13 +86,13 @@
 		commandHistory = [...commandHistory, command];
 	};
 
-	/**
-	 * @type {Date}
-	 */
-	const currentTime = new Date();
-	const hours = currentTime.getHours().toString().padStart(2, '0');
-	const minutes = currentTime.getMinutes().toString().padStart(2, '0');
-	const formattedTime = `${hours}:${minutes}`;
+	const giveCurrentTime = () => {
+		const date = new Date();
+		const hours = date.getHours();
+		const minutes = date.getMinutes();
+		const seconds = date.getSeconds();
+		return `${hours}:${minutes}`;
+	};
 
 
 	onMount(() => {
@@ -140,7 +140,7 @@
 			<span class="text-violet-500">></span>
 			<span class="text-green-500">></span>
 			<span class="text-2xl text-blue-500">&nbsp;portfolio</span>
-			<span class="text-green-500 text-2xl">&nbsp;{formattedTime}</span>
+			<span class="text-green-500 text-2xl">&nbsp;{giveCurrentTime()}</span>
 			<span class="flex items-center w-3/4">
 				&nbsp;
 				<input
