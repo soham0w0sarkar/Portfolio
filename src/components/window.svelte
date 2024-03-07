@@ -9,9 +9,7 @@
 </script>
 
 <div
-	class="flex flex-col items-start h-{maximise ? '1/2' : 'full'} w-{maximise
-		? '1/2'
-		: 'full'} variant-glass-surface rounded-lg overflow-hidden transition-all duration-200 ease-in-out"
+	class="flex flex-col items-start variant-glass-surface rounded-lg overflow-hidden transition-all duration-200 ease-in-out {maximise ? 'w-1/2 h-1/2' : 'w-full h-full'}"
 >
 	<div class="w-full h-fit variant-filled-surface p-2">
 		<div class="flex justify-between items-center h-full w-full">
