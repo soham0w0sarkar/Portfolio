@@ -1,5 +1,11 @@
 <script>
 	import { Window , Terminal} from '$lib';
+	
+	let userAgent = navigator.userAgent;
+	console.log("User Agent:", userAgent);
+
+	let deviceType = /Mobile|iP(hone|od|ad)|Android|BlackBerry|IEMobile/.test(userAgent) ? "Mobile" : "Desktop";
+	console.log("Device Type:", deviceType);
 </script>
 
 <svelte:head>
