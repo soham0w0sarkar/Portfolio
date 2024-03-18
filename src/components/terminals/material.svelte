@@ -1,15 +1,12 @@
 <script>
     import { IconPoint, IconCircleCheck, IconCircleX } from '@tabler/icons-svelte';
-    import { onMount, tick, createEventDispatcher } from 'svelte';
+	import { commandHistory, commandLine } from '$lib/store'
+    import { onMount, tick } from 'svelte';
 
-    /**
-     * @type {string[]}
-     */
-    let commandHistory = [];
     /**
      * @type {number}
      */
-    let currentCommand = commandHistory.length;
+    let currentCommand = $commandHistory.length;
 
     /**
      * @typedef {Object} CommandLine
@@ -17,17 +14,6 @@
      * @property {string} output
      * @property {'current' | 'success' | 'error'} status
      */
-
-    /**
-     * @type {CommandLine[]}
-     */
-    let commandLine = [
-        {
-            command: '',
-            output: '',
-            status: 'current'
-        }
-    ];
 
     /**
      * @type {NodeListOf<HTMLInputElement>}
@@ -64,7 +50,7 @@
      */
 	const handleCommand = (command) => {
 		if (command === 'clear') {
-			commandLine = [
+			$commandLine = [
 				{
 					command: '',
 					output: '',
@@ -72,10 +58,10 @@
 				}
 			];
 		} else {
-			commandLine[commandLine.length - 1].output = commandOutputSet[command] || `command not found: ${command}`;
-			commandLine[commandLine.length - 1].status = commandOutputSet[command] ? 'success' : 'error';
-			commandLine = [
-				...commandLine,
+			$commandLine[$commandLine.length - 1].output = commandOutputSet[command] || `command not found: ${command}`;
+			$commandLine[$commandLine.length - 1].status = commandOutputSet[command] ? 'success' : 'error';
+			$commandLine = [
+				...$commandLine,
 				{
 					command: '',
 					output: '',
@@ -83,14 +69,13 @@
 				}
 			];
 		}
-		commandHistory = [...commandHistory, command];
+		$commandHistory = [...$commandHistory, command];
 	};
 
 	const giveCurrentTime = () => {
 		const date = new Date();
 		const hours = date.getHours();
 		const minutes = date.getMinutes();
-		const seconds = date.getSeconds();
 		return `${hours}:${minutes}`;
 	};
 
@@ -104,20 +89,20 @@
 
 		document.addEventListener('keydown', async(e) => {
 			if (e.key === 'Enter') {
-				handleCommand(commandLine[commandLine.length - 1].command);
+				handleCommand($commandLine[$commandLine.length - 1].command);
 				await tick();
 				focus();
 			}
 			
 			if (e.key === 'ArrowUp') {
 				if (currentCommand > 0) {
-					commandLine[commandLine.length - 1].command = commandHistory[--currentCommand];
+					$commandLine[$commandLine.length - 1].command = $commandHistory[--currentCommand];
 				}
 			}
 
 			if (e.key === 'ArrowDown') {
-				if (currentCommand < commandHistory.length - 1) {
-					commandLine[commandLine.length - 1].command = commandHistory[++currentCommand];
+				if (currentCommand < $commandHistory.length - 1) {
+					$commandLine[$commandLine.length - 1].command = $commandHistory[++currentCommand];
 				}
 			}
 		});
@@ -126,7 +111,7 @@
 </script>
 
 <div>
-	{#each commandLine as line, i}
+	{#each $commandLine as line, i}
 		<div class="flex text-3xl font-bold items-center">
 			<span>
 				{#if line.status === 'current'}
