@@ -2,8 +2,6 @@
     import { IconPoint, IconCircleCheck, IconCircleX } from '@tabler/icons-svelte';
     import { onMount, tick, createEventDispatcher } from 'svelte';
 
-    const dispatch = createEventDispatcher();
-
     /**
      * @type {string[]}
      */
@@ -65,9 +63,6 @@
      * @returns {void}
      */
 	const handleCommand = (command) => {
-        if(command.split(' ')[0] === 'oh-my-posh'){
-            dispatch('oh-my-posh', {command});
-        }
 		if (command === 'clear') {
 			commandLine = [
 				{
