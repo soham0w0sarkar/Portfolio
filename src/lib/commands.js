@@ -3,7 +3,7 @@
 * @returns {void}
 */
 const handleCommand = (command) => {
-    switch (command) {
+    switch(command) {
         case 'clear':
             console.log('clear');
             break;
@@ -34,10 +34,5 @@ const handleCommand = (command) => {
         case 'exit':
             console.log('exit');
             break;
-        default:
-            console.log('default');
-            break;
     }
 };
-
-export default handleCommand;
