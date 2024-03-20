@@ -1,38 +1,78 @@
 /**
-* @param {string} command
-* @returns {void}
-*/
-const handleCommand = (command) => {
-    switch(command) {
+ * @param {string} command
+ * @returns {void}
+ */
+export default function handleCommand(command) {
+    switch (command) {
         case 'clear':
-            console.log('clear');
+            clear();
             break;
         case 'portfolio':
-            console.log('portfolio');
+            portfolio();
             break;
         case 'about':
-            console.log('about');
+            about();
             break;
         case 'contact':
-            console.log('contact');
+            contact();
             break;
         case 'skills':
-            console.log('skills');
+            skills();
             break;
         case 'projects':
-            console.log('projects');
+            projects();
             break;
         case 'education':
-            console.log('education');
+            education();
             break;
         case 'experience':
-            console.log('experience');
+            experience();
             break;
         case 'resume':
-            console.log('resume');
+            resume();
             break;
         case 'exit':
-            console.log('exit');
+            exit();
             break;
     }
+};
+
+const clear = () => {
+    console.log('clear');
+};
+
+const portfolio = () => {
+    console.log('portfolio');
+};
+
+const about = () => {
+    console.log('about');
+};
+
+const contact = () => {
+    console.log('contact');
+};
+
+const skills = () => {
+    console.log('skills');
+};
+
+const projects = () => {
+    console.log('projects');
+};
+
+const education = () => {
+    console.log('education');
+};
+
+const experience = () => {
+    console.log('experience');
+};
+
+const resume = () => {
+    console.log('resume');
+};
+
+const exit = () => {
+    console.log('exit');
 };
