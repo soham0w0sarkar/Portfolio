@@ -1,5 +1,6 @@
 <script>
     import { IconPoint, IconCircleCheck, IconCircleX } from '@tabler/icons-svelte';
+	import handleCommand from '$lib/commands';
 	import { commandHistory, commandLine } from '$lib/store'
     import { onMount, tick } from 'svelte';
 
@@ -48,7 +49,7 @@
      * @param {string} command
      * @returns {void}
      */
-	const handleCommand = (command) => {
+	const handleCommands = (command) => {
 		if (command === 'clear') {
 			$commandLine = [
 				{
@@ -84,12 +85,12 @@
 		focus();
 		/**
 		 * Adds an event listener for the 'keydown' event.
-		 * If the key pressed is 'Enter', it calls the handleCommand function.
+		 * If the key pressed is 'Enter', it calls the handleCommands function.
 		 */
 
 		document.addEventListener('keydown', async(e) => {
 			if (e.key === 'Enter') {
-				handleCommand($commandLine[$commandLine.length - 1].command);
+				handleCommands($commandLine[$commandLine.length - 1].command);
 				await tick();
 				focus();
 			}
