@@ -20,25 +20,9 @@
     /**
      * @type {NodeListOf<HTMLInputElement>}
      */
-	
+
     let inputElements;
 
-    /**
-     * @type {Record<string, string>}
-     */
-
-    const commandOutputSet = {
-        clear: 'clear',
-        portfolio: 'portfolio',
-        about: 'about',
-        contact: 'contact',
-        skills: 'skills',
-        projects: 'projects',
-        education: 'education',
-        experience: 'experience',
-        resume: 'resume',
-        exit: 'exit'
-    };
 
     /**
      * @returns {void}
@@ -82,6 +66,18 @@
 					$commandLine[$commandLine.length - 1].command = $commandHistory[++currentCommand];
 				}
 			}
+
+			if (e.ctrlKey && e.key === 'k') {
+				$commandLine = [{
+					command: '',
+					output: '',
+					status: 'current'
+				}];
+			}
+
+			if (e.ctrlKey && e.key === '`') {
+        		focus();
+    		}
 		});
 
 	});
