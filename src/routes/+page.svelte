@@ -1,5 +1,5 @@
 <script>
-	import { Window , Terminal} from '$lib';
+	import { Window, Terminal } from '$lib';
 </script>
 
 <svelte:head>

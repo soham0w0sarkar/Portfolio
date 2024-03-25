@@ -1,37 +1,35 @@
 <script>
-    import { IconPoint, IconCircleCheck, IconCircleX } from '@tabler/icons-svelte';
+	import { IconPoint, IconCircleCheck, IconCircleX } from '@tabler/icons-svelte';
 	import handleCommand from '$lib/commands';
-	import { commandHistory, commandLine } from '$lib/store'
-    import { onMount, tick } from 'svelte';
+	import { commandHistory, commandLine } from '$lib/store';
+	import { onMount, tick } from 'svelte';
 
-    /**
-     * @type {number}
-     */
+	/**
+	 * @type {number}
+	 */
 
-    let currentCommand = $commandHistory.length;
+	let currentCommand = $commandHistory.length;
 
-    /**
-     * @typedef {Object} CommandLine
-     * @property {string} command
-     * @property {string} output
-     * @property {'current' | 'success' | 'error'} status
-     */
+	/**
+	 * @typedef {Object} CommandLine
+	 * @property {string} command
+	 * @property {string} output
+	 * @property {'current' | 'success' | 'error'} status
+	 */
 
-    /**
-     * @type {NodeListOf<HTMLInputElement>}
-     */
+	/**
+	 * @type {NodeListOf<HTMLInputElement>}
+	 */
 
-    let inputElements;
+	let inputElements;
 
-
-    /**
-     * @returns {void}
-     */
-    const focus = () => {
-        inputElements = document.querySelectorAll('.inputs');
-        inputElements[inputElements.length - 1].focus();
-    }
-
+	/**
+	 * @returns {void}
+	 */
+	const focus = () => {
+		inputElements = document.querySelectorAll('.inputs');
+		inputElements[inputElements.length - 1].focus();
+	};
 
 	const giveCurrentTime = () => {
 		const date = new Date();
@@ -40,7 +38,6 @@
 		return `${hours}:${minutes}`;
 	};
 
-
 	onMount(() => {
 		focus();
 		/**
@@ -48,13 +45,13 @@
 		 * If the key pressed is 'Enter', it calls the handleCommands function.
 		 */
 
-		document.addEventListener('keydown', async(e) => {
+		document.addEventListener('keydown', async (e) => {
 			if (e.key === 'Enter') {
 				handleCommand($commandLine[$commandLine.length - 1].command);
 				await tick();
 				focus();
 			}
-			
+
 			if (e.key === 'ArrowUp') {
 				if (currentCommand > 0) {
 					$commandLine[$commandLine.length - 1].command = $commandHistory[--currentCommand];
@@ -68,18 +65,19 @@
 			}
 
 			if (e.ctrlKey && e.key === 'k') {
-				$commandLine = [{
-					command: '',
-					output: '',
-					status: 'current'
-				}];
+				$commandLine = [
+					{
+						command: '',
+						output: '',
+						status: 'current'
+					}
+				];
 			}
 
 			if (e.ctrlKey && e.key === '`') {
-        		focus();
-    		}
+				focus();
+			}
 		});
-
 	});
 </script>
 
@@ -106,7 +104,7 @@
 					class="inputs bg-inherit p-0 w-full border-0 text-2xl border-transparent focus:border-transparent focus:ring-0"
 					bind:value={line.command}
 					readonly={line.status !== 'current' ? true : false}
-                />
+				/>
 			</span>
 		</div>
 		<div class="text-3xl w-full h-fit">

@@ -5,7 +5,6 @@ import { commandHistory, commandLine } from '$lib/store';
  * @returns {void}
  */
 
-
 export default function handleCommand(command) {
 	switch (command) {
 		case 'clear':
@@ -51,7 +50,7 @@ export default function handleCommand(command) {
 const updateCommandLine = (output, status) => {
 	commandLine.update((commandLine) => {
 		commandLine[commandLine.length - 1].output = output;
-        commandLine[commandLine.length - 1].status = status;
+		commandLine[commandLine.length - 1].status = status;
 		return commandLine;
 	});
 
@@ -90,46 +89,37 @@ const clear = () => {
 	commandLine.set(newCommandLine);
 };
 
-
 const portfolio = () => {
 	updateCommandLine('portfolio', 'success');
 };
-
 
 const about = () => {
 	updateCommandLine('about', 'success');
 };
 
-
 const contact = () => {
 	updateCommandLine('contact', 'success');
 };
-
 
 const skills = () => {
 	updateCommandLine('skills', 'success');
 };
 
-
 const projects = () => {
 	updateCommandLine('projects', 'success');
 };
-
 
 const education = () => {
 	updateCommandLine('education', 'success');
 };
 
-
 const experience = () => {
 	updateCommandLine('experience', 'success');
 };
 
-
 const resume = () => {
 	updateCommandLine('resume', 'success');
 };
-
 
 const exit = () => {
 	updateCommandLine('exit', 'success');
