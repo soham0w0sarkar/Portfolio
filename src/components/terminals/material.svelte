@@ -82,7 +82,7 @@
 </script>
 
 <div>
-	{#each $commandLine as line, i}
+	{#each $commandLine as line}
 		<div class="flex text-3xl font-bold items-center">
 			<span>
 				{#if line.status === 'current'}
