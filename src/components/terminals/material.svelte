@@ -1,84 +1,13 @@
 <script>
 	import { IconPoint, IconCircleCheck, IconCircleX } from '@tabler/icons-svelte';
-	import handleCommand from '$lib/commands';
-	import { commandHistory, commandLine } from '$lib/store';
-	import { onMount, tick } from 'svelte';
-
-	/**
-	 * @type {number}
-	 */
-
-	let currentCommand = $commandHistory.length;
-
-	/**
-	 * @typedef {Object} CommandLine
-	 * @property {string} command
-	 * @property {string} output
-	 * @property {'current' | 'success' | 'error'} status
-	 */
-
-	/**
-	 * @type {NodeListOf<HTMLInputElement>}
-	 */
-
-	let inputElements;
-
-	/**
-	 * @returns {void}
-	 */
-	const focus = () => {
-		inputElements = document.querySelectorAll('.inputs');
-		inputElements[inputElements.length - 1].focus();
-	};
-
+	import { commandLine } from '$lib/store';
+	
 	const giveCurrentTime = () => {
 		const date = new Date();
 		const hours = date.getHours();
 		const minutes = date.getMinutes();
 		return `${hours}:${minutes}`;
 	};
-
-	onMount(() => {
-		focus();
-		/**
-		 * Adds an event listener for the 'keydown' event.
-		 * If the key pressed is 'Enter', it calls the handleCommands function.
-		 */
-
-		document.addEventListener('keydown', async (e) => {
-			if (e.key === 'Enter') {
-				handleCommand($commandLine[$commandLine.length - 1].command);
-				await tick();
-				focus();
-			}
-
-			if (e.key === 'ArrowUp') {
-				if (currentCommand > 0) {
-					$commandLine[$commandLine.length - 1].command = $commandHistory[--currentCommand];
-				}
-			}
-
-			if (e.key === 'ArrowDown') {
-				if (currentCommand < $commandHistory.length - 1) {
-					$commandLine[$commandLine.length - 1].command = $commandHistory[++currentCommand];
-				}
-			}
-
-			if (e.ctrlKey && e.key === 'k') {
-				$commandLine = [
-					{
-						command: '',
-						output: '',
-						status: 'current'
-					}
-				];
-			}
-
-			if (e.ctrlKey && e.key === '`') {
-				focus();
-			}
-		});
-	});
 </script>
 
 <div>
