@@ -37,9 +37,9 @@ export default function handleCommand(command) {
 		case 'exit':
 			exit();
 			break;
-        default:
-            updateCommandLine(`Command not found: ${command}`, 'error');
-            break;
+		default:
+			updateCommandLine(`Command not found: ${command}`, 'error');
+			break;
 	}
 	addCommandToHistory(command);
 }

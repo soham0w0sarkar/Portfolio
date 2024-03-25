@@ -1,7 +1,7 @@
 <script>
 	import { IconPoint, IconCircleCheck, IconCircleX } from '@tabler/icons-svelte';
 	import { commandLine } from '$lib/store';
-	
+
 	const giveCurrentTime = () => {
 		const date = new Date();
 		const hours = date.getHours();
