@@ -12,13 +12,6 @@
 	let currentCommand = $commandHistory.length;
 
 	/**
-	 * @typedef {Object} CommandLine
-	 * @property {string} command
-	 * @property {string} output
-	 * @property {'current' | 'success' | 'error'} status
-	 */
-
-	/**
 	 * @type {NodeListOf<HTMLInputElement>}
 	 */
 
