@@ -1,8 +1,11 @@
 import { commandHistory, commandLine } from '$lib/store';
+
 /**
  * @param {string} command
  * @returns {void}
  */
+
+
 export default function handleCommand(command) {
 	switch (command) {
 		case 'clear':
@@ -42,17 +45,13 @@ export default function handleCommand(command) {
 /**
  * @param {string} output
  * @param {string} status
- * @param {string} command
  * @returns {void}
  */
 
-const updateCommandLine = (command, output, status) => {
+const updateCommandLine = (output, status) => {
 	commandLine.update((commandLine) => {
-		commandLine[commandLine.length - 1] = {
-			command,
-			output,
-			status
-		};
+		commandLine[commandLine.length - 1].output = output;
+        commandLine[commandLine.length - 1].status = status;
 		return commandLine;
 	});
 
@@ -61,7 +60,7 @@ const updateCommandLine = (command, output, status) => {
 		output: '',
 		status: 'current'
 	};
-    
+
 	commandLine.update((commandLine) => {
 		commandLine.push(newCommandLine);
 		return commandLine;
@@ -91,38 +90,47 @@ const clear = () => {
 	commandLine.set(newCommandLine);
 };
 
+
 const portfolio = () => {
-	console.log('portfolio');
+	updateCommandLine('portfolio', 'success');
 };
+
 
 const about = () => {
-	console.log('about');
+	updateCommandLine('about', 'success');
 };
+
 
 const contact = () => {
-	console.log('contact');
+	updateCommandLine('contact', 'success');
 };
+
 
 const skills = () => {
-	console.log('skills');
+	updateCommandLine('skills', 'success');
 };
+
 
 const projects = () => {
-	console.log('projects');
+	updateCommandLine('projects', 'success');
 };
+
 
 const education = () => {
-	console.log('education');
+	updateCommandLine('education', 'success');
 };
+
 
 const experience = () => {
-	console.log('experience');
+	updateCommandLine('experience', 'success');
 };
+
 
 const resume = () => {
-	console.log('resume');
+	updateCommandLine('resume', 'success');
 };
 
+
 const exit = () => {
-	console.log('exit');
+	updateCommandLine('exit', 'success');
 };

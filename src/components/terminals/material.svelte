@@ -7,6 +7,7 @@
     /**
      * @type {number}
      */
+
     let currentCommand = $commandHistory.length;
 
     /**
@@ -19,11 +20,13 @@
     /**
      * @type {NodeListOf<HTMLInputElement>}
      */
+	
     let inputElements;
 
     /**
      * @type {Record<string, string>}
      */
+
     const commandOutputSet = {
         clear: 'clear',
         portfolio: 'portfolio',
@@ -45,33 +48,6 @@
         inputElements[inputElements.length - 1].focus();
     }
 
-    /**
-     * @param {string} command
-     * @returns {void}
-     */
-	const handleCommands = (command) => {
-		if (command === 'clear') {
-			$commandLine = [
-				{
-					command: '',
-					output: '',
-					status: 'current'
-				}
-			];
-		} else {
-			$commandLine[$commandLine.length - 1].output = commandOutputSet[command] || `command not found: ${command}`;
-			$commandLine[$commandLine.length - 1].status = commandOutputSet[command] ? 'success' : 'error';
-			$commandLine = [
-				...$commandLine,
-				{
-					command: '',
-					output: '',
-					status: 'current'
-				}
-			];
-		}
-		$commandHistory = [...$commandHistory, command];
-	};
 
 	const giveCurrentTime = () => {
 		const date = new Date();
@@ -90,7 +66,7 @@
 
 		document.addEventListener('keydown', async(e) => {
 			if (e.key === 'Enter') {
-				handleCommands($commandLine[$commandLine.length - 1].command);
+				handleCommand($commandLine[$commandLine.length - 1].command);
 				await tick();
 				focus();
 			}
