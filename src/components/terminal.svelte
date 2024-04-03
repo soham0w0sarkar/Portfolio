@@ -1,5 +1,5 @@
 <script>
-	import { Material } from '$lib';
+	import { Material, AtomicBit } from '$lib';
 
 	import handleCommand from '$lib/commands';
 	import { commandHistory, commandLine } from '$lib/store';
@@ -64,7 +64,7 @@
 		});
 	});
 
-	let terminal = Material;
+	let terminal = AtomicBit;
 </script>
 
 <svelte:component this={terminal} />

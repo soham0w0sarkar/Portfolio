@@ -2,5 +2,6 @@
 import Terminal from '../components/terminal.svelte';
 import Window from '../components/window.svelte';
 import Material from '../components/terminals/material.svelte';
+import AtomicBit from '../components/terminals/atomicBit.svelte';
 
-export { Terminal, Window, Material };
+export { Terminal, Window, Material, AtomicBit };
