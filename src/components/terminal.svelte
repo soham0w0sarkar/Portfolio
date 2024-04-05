@@ -22,6 +22,17 @@
 		inputElements[inputElements.length - 1].focus();
 	};
 
+	/**
+	 * @param {string} terminalName
+	 */
+	const changeTerminal = (terminalName) => {
+		if (terminalName === "material") {
+			terminal = Material;
+		} else if (terminalName === "atomicBit") {
+			terminal = AtomicBit;
+		}
+	};
+
 	onMount(() => {
 		focus();
 		/**
@@ -31,7 +42,11 @@
 
 		document.addEventListener('keydown', async (e) => {
 			if (e.key === 'Enter') {
-				handleCommand($commandLine[$commandLine.length - 1].command);
+				if($commandLine[$commandLine.length - 1].command.split(' ')[0] === "oh-my-posh") {
+					changeTerminal($commandLine[$commandLine.length - 1].command.split(' ')[1]);
+				} else {
+					handleCommand($commandLine[$commandLine.length - 1].command);
+				}
 				await tick();
 				focus();
 			}
