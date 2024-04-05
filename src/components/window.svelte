@@ -67,7 +67,7 @@
 			</span>
 		</div>
 	</div>
-	<div class="w-full h-fit p-2">
+	<div class="w-full h-full p-2 overflow-y-scroll">
 		<slot />
 	</div>
 </div>
