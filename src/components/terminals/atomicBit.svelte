@@ -30,7 +30,7 @@
 				/>
 			</span>
 		</div>
-		<div class="text-2xl w-full h-fit pr-2 pl-2">
+		<div class="text-3xl w-full h-fit pr-2 pl-2">
 			{line.output}
 		</div>
 	{/each}
