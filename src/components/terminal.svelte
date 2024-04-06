@@ -6,12 +6,6 @@
 	import { onMount, tick } from 'svelte';
 
 	/**
-	 * @type {number}
-	 */
-
-	let currentCommand = $commandHistory.length;
-
-	/**
 	 * @type {NodeListOf<HTMLInputElement>}
 	 */
 
@@ -36,9 +30,10 @@
 	onMount(() => {
 		focus();
 		/**
-		 * Adds an event listener for the 'keydown' event.
-		 * If the key pressed is 'Enter', it calls the handleCommands function.
-		 */
+		* If the key pressed is 'ArrowUp' or 'ArrowDown', it changes the command in the command line.
+		* If the key pressed is 'Ctrl + k', it clears the command line.
+		* If the key pressed is 'Ctrl + `', it focuses on the input element.
+		*/
 		document.addEventListener('keydown', async (e) => {
 			if (e.key === 'Enter') {
 				if($commandLine[$commandLine.length - 1].command === "") return;
@@ -52,15 +47,20 @@
 				focus();
 			}
 
+			/**
+			 * @type {number}
+			 */
+			let currentCommand = $commandHistory.length;
+
 			if (e.key === 'ArrowUp') {
-				if (currentCommand > 0) {
-					$commandLine[$commandLine.length - 1].command = $commandHistory[--currentCommand];
+				if (currentCommand < $commandHistory.length - 1) {
+					$commandLine[$commandLine.length - 1].command = $commandHistory[++currentCommand];
 				}
 			}
 
 			if (e.key === 'ArrowDown') {
-				if (currentCommand < $commandHistory.length - 1) {
-					$commandLine[$commandLine.length - 1].command = $commandHistory[++currentCommand];
+				if (currentCommand > 0) {
+					$commandLine[$commandLine.length - 1].command = $commandHistory[--currentCommand];
 				}
 			}
 
