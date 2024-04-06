@@ -39,9 +39,10 @@
 		 * Adds an event listener for the 'keydown' event.
 		 * If the key pressed is 'Enter', it calls the handleCommands function.
 		 */
-
 		document.addEventListener('keydown', async (e) => {
 			if (e.key === 'Enter') {
+				if($commandLine[$commandLine.length - 1].command === "") return;
+				
 				if($commandLine[$commandLine.length - 1].command.split(' ')[0] === "oh-my-posh") {
 					changeTerminal($commandLine[$commandLine.length - 1].command.split(' ')[1]);
 				} else {
@@ -79,7 +80,7 @@
 		});
 	});
 
-	let terminal = AtomicBit;
+	let terminal = Material;
 </script>
 
 <svelte:component this={terminal} />
