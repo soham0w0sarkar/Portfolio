@@ -40,6 +40,7 @@
 				
 				if($commandLine[$commandLine.length - 1].command.split(' ')[0] === "oh-my-posh") {
 					changeTerminal($commandLine[$commandLine.length - 1].command.split(' ')[1]);
+					$commandLine[$commandLine.length - 1].command = "";
 				} else {
 					handleCommand($commandLine[$commandLine.length - 1].command);
 				}
