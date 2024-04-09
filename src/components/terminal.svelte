@@ -27,6 +27,12 @@
 		}
 	};
 
+	/**
+	* @type {number}
+	*/
+
+	let currentCommand = $commandHistory.length;
+
 	onMount(() => {
 		focus();
 		/**
@@ -48,11 +54,7 @@
 				focus();
 			}
 
-			/**
-			 * @type {number}
-			 */
-			let currentCommand = $commandHistory.length;
-
+			
 			if (e.key === 'ArrowUp') {
 				if (currentCommand < $commandHistory.length - 1) {
 					$commandLine[$commandLine.length - 1].command = $commandHistory[++currentCommand];
@@ -60,7 +62,7 @@
 			}
 
 			if (e.key === 'ArrowDown') {
-				if (currentCommand > 0) {
+				if (currentCommand >=0) {
 					$commandLine[$commandLine.length - 1].command = $commandHistory[--currentCommand];
 				}
 			}
