@@ -20,33 +20,33 @@
 	 * @param {string} terminalName
 	 */
 	const changeTerminal = (terminalName) => {
-		if (terminalName === "material") {
+		if (terminalName === 'material') {
 			terminal = Material;
-		} else if (terminalName === "atomicBit") {
+		} else if (terminalName === 'atomicBit') {
 			terminal = AtomicBit;
 		}
 	};
 
 	/**
-	* @type {number}
-	*/
+	 * @type {number}
+	 */
 
 	let currentCommand = $commandHistory.length;
 
 	onMount(() => {
 		focus();
 		/**
-		* If the key pressed is 'ArrowUp' or 'ArrowDown', it changes the command in the command line.
-		* If the key pressed is 'Ctrl + Backspace', it clears the command line.
-		* If the key pressed is 'Ctrl + `', it focuses on the input element.
-		*/
+		 * If the key pressed is 'ArrowUp' or 'ArrowDown', it changes the command in the command line.
+		 * If the key pressed is 'Ctrl + Backspace', it clears the command line.
+		 * If the key pressed is 'Ctrl + `', it focuses on the input element.
+		 */
 		document.addEventListener('keydown', async (e) => {
 			if (e.key === 'Enter') {
-				if($commandLine[$commandLine.length - 1].command === "") return;
-				
-				if($commandLine[$commandLine.length - 1].command.split(' ')[0] === "oh-my-posh") {
+				if ($commandLine[$commandLine.length - 1].command === '') return;
+
+				if ($commandLine[$commandLine.length - 1].command.split(' ')[0] === 'oh-my-posh') {
 					changeTerminal($commandLine[$commandLine.length - 1].command.split(' ')[1]);
-					$commandLine[$commandLine.length - 1].command = "";
+					$commandLine[$commandLine.length - 1].command = '';
 				} else {
 					handleCommand($commandLine[$commandLine.length - 1].command);
 				}
@@ -54,7 +54,6 @@
 				focus();
 			}
 
-			
 			if (e.key === 'ArrowUp') {
 				if (currentCommand < $commandHistory.length - 1) {
 					$commandLine[$commandLine.length - 1].command = $commandHistory[++currentCommand];
@@ -62,7 +61,7 @@
 			}
 
 			if (e.key === 'ArrowDown') {
-				if (currentCommand >=0) {
+				if (currentCommand >= 0) {
 					$commandLine[$commandLine.length - 1].command = $commandHistory[--currentCommand];
 				}
 			}

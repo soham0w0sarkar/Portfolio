@@ -1,18 +1,23 @@
 <script>
-	import { IconUserCircle, IconFolderFilled, IconHash, IconX, IconChecks} from '@tabler/icons-svelte';
+	import {
+		IconUserCircle,
+		IconFolderFilled,
+		IconHash,
+		IconX,
+		IconChecks
+	} from '@tabler/icons-svelte';
 	import { commandLine } from '$lib/store';
-        
 </script>
 
 <div>
 	{#each $commandLine as line}
 		<div class="flex w-full text-3xl font-semibold flex-col p-2">
-                        <div class="flex justify-start  items-center gap-3">
-                                <IconUserCircle  size={28}  class="text-green-500"/> 
+			<div class="flex justify-start items-center gap-3">
+				<IconUserCircle size={28} class="text-green-500" />
 				<span class="text-green-500">runner on</span>
-				<IconFolderFilled  class="text-blue-500" size={28}/>
+				<IconFolderFilled class="text-blue-500" size={28} />
 				<span class="text-blue-500">~/portfolio</span>
-                        </div>
+			</div>
 			<span class="flex items-center justify-center transition-all">
 				{#if line.status === 'current'}
 					<IconHash size={20} class="text-pink-700" stroke={3} />
