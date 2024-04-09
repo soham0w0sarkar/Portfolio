@@ -37,7 +37,7 @@
 		focus();
 		/**
 		* If the key pressed is 'ArrowUp' or 'ArrowDown', it changes the command in the command line.
-		* If the key pressed is 'Ctrl + k', it clears the command line.
+		* If the key pressed is 'Ctrl + Backspace', it clears the command line.
 		* If the key pressed is 'Ctrl + `', it focuses on the input element.
 		*/
 		document.addEventListener('keydown', async (e) => {
@@ -67,14 +67,8 @@
 				}
 			}
 
-			if (e.ctrlKey && e.key === 'k') {
-				$commandLine = [
-					{
-						command: '',
-						output: '',
-						status: 'current'
-					}
-				];
+			if (e.ctrlKey && e.key === 'Backspace') {
+				handleCommand('clear');
 			}
 
 			if (e.ctrlKey && e.key === '`') {
