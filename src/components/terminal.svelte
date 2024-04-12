@@ -16,14 +16,21 @@
 		inputElements[inputElements.length - 1].focus();
 	};
 
+	let terminal = Material;
 	/**
 	 * @param {string} terminalName
 	 */
 	const changeTerminal = (terminalName) => {
-		if (terminalName === 'material') {
-			terminal = Material;
-		} else if (terminalName === 'atomicBit') {
-			terminal = AtomicBit;
+		switch (terminalName) {
+			case 'atomic-bit':
+				terminal = AtomicBit;
+				break;
+			case 'material':
+				terminal = Material;
+				break;
+			default:
+				handleCommand(terminalName);
+				break;
 		}
 	};
 
@@ -42,6 +49,7 @@
 		 */
 		document.addEventListener('keydown', async (e) => {
 			if (e.key === 'Enter') {
+				currentCommand = $commandHistory.length;
 				if ($commandLine[$commandLine.length - 1].command === '') return;
 
 				if ($commandLine[$commandLine.length - 1].command.split(' ')[0] === 'oh-my-posh') {
@@ -75,8 +83,6 @@
 			}
 		});
 	});
-
-	let terminal = Material;
 </script>
 
 <svelte:component this={terminal} />
