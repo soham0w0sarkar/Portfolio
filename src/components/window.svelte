@@ -5,7 +5,7 @@
 	let showSizeButtonIcon = false;
 	let showMinimiseButtonIcon = false;
 
-	let maximise = true;
+	let maximise = false;
 </script>
 
 <div
