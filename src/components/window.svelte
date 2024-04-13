@@ -13,7 +13,7 @@
 		? 'w-1/2 h-1/2'
 		: 'w-full h-full'}"
 >
-	<div class="w-full h-fit variant-filled-surface p-2">
+	<div class="w-full h-full variant-filled-surface p-2">
 		<div class="flex justify-between items-center h-full w-full">
 			<div class="w-full h-full text-center font-extrabold">Terminal</div>
 			<span class="h-full w-fit flex p-1">
