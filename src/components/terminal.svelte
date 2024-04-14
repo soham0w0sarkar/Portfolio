@@ -1,87 +1,99 @@
 <script>
+	/**
+	 * Importing Material and AtomicBit components along with Svelte utilities and stores.
+	 * @type {import('svelte').SvelteComponent}
+	 */
 	import { Material, AtomicBit } from '$lib';
-
-	import handleCommand from '$lib/commands';
 	import { commandHistory, commandLine } from '$lib/store';
-	import { onMount, tick } from 'svelte';
+	import { SvelteComponent, onMount, tick } from 'svelte';
 
 	/**
+	 * Stores a reference to all input elements with the class 'inputs'.
 	 * @type {NodeListOf<HTMLInputElement>}
 	 */
-
 	let inputElements;
 
+	/**
+	 * Sets focus on the last input element with the class 'inputs'.
+	 */
 	const focus = () => {
 		inputElements = document.querySelectorAll('.inputs');
-		inputElements[inputElements.length - 1].focus();
+		inputElements[inputElements.length - 1]?.focus();
 	};
 
+	// /**
+	//  * Current terminal component to render.
+	//  * @type {typeof SvelteComponent}
+	//  */
 	let terminal = Material;
+
 	/**
-	 * @param {string} terminalName
+	 * Index of the current command in the command history.
+	 * @type {number}
 	 */
-	const changeTerminal = (terminalName) => {
-		switch (terminalName) {
-			case 'atomic-bit':
-				terminal = AtomicBit;
-				break;
-			case 'material':
-				terminal = Material;
-				break;
-			default:
-				handleCommand(terminalName);
-				break;
+	let currentCommand = $commandHistory.length;
+
+	/**
+	 * Changes the current terminal component based on the provided terminal name.
+	 * @param {string} terminalName - Name of the terminal component to switch to.
+	 */
+	// const changeTerminal = (terminalName) => {
+	// 	switch (terminalName) {
+	// 		case 'atomic-bit':
+	// 			terminal = AtomicBit;
+	// 			break;
+	// 		case 'material':
+	// 			terminal = Material;
+	// 			break;
+	// 		default:
+	// 			// Handle unexpected terminalName
+	// 			break;
+	// 	}
+	// };
+
+	/**
+	 * Handles keyboard events to interact with the command line interface.
+	 * @param {KeyboardEvent} e - The keyboard event object.
+	 */
+	const handleKeyDown = async (e) => {
+		if (e.key === 'Enter') {
+			currentCommand = $commandHistory.length;
+			if ($commandLine[$commandLine.length - 1].command === '') return;
+
+			await tick();
+			focus();
+		}
+
+		if (e.key === 'ArrowUp') {
+			if (currentCommand < $commandHistory.length - 1) {
+				$commandLine[$commandLine.length - 1].command = $commandHistory[++currentCommand];
+			}
+		}
+
+		if (e.key === 'ArrowDown') {
+			if (currentCommand >= 0) {
+				$commandLine[$commandLine.length - 1].command = $commandHistory[--currentCommand];
+			}
+		}
+
+		if (e.ctrlKey && e.key === '`') {
+			focus();
 		}
 	};
 
 	/**
-	 * @type {number}
+	 * Lifecycle hook that runs after the component mounts.
 	 */
-
-	let currentCommand = $commandHistory.length;
-
 	onMount(() => {
 		focus();
+		document.addEventListener('keydown', handleKeyDown);
+
 		/**
-		 * If the key pressed is 'ArrowUp' or 'ArrowDown', it changes the command in the command line.
-		 * If the key pressed is 'Ctrl + Backspace', it clears the command line.
-		 * If the key pressed is 'Ctrl + `', it focuses on the input element.
+		 * Cleanup function to remove the event listener when the component unmounts.
 		 */
-		document.addEventListener('keydown', async (e) => {
-			if (e.key === 'Enter') {
-				currentCommand = $commandHistory.length;
-				if ($commandLine[$commandLine.length - 1].command === '') return;
-
-				if ($commandLine[$commandLine.length - 1].command.split(' ')[0] === 'oh-my-posh') {
-					changeTerminal($commandLine[$commandLine.length - 1].command.split(' ')[1]);
-					$commandLine[$commandLine.length - 1].command = '';
-				} else {
-					handleCommand($commandLine[$commandLine.length - 1].command);
-				}
-				await tick();
-				focus();
-			}
-
-			if (e.key === 'ArrowUp') {
-				if (currentCommand < $commandHistory.length - 1) {
-					$commandLine[$commandLine.length - 1].command = $commandHistory[++currentCommand];
-				}
-			}
-
-			if (e.key === 'ArrowDown') {
-				if (currentCommand >= 0) {
-					$commandLine[$commandLine.length - 1].command = $commandHistory[--currentCommand];
-				}
-			}
-
-			if (e.ctrlKey && e.key === 'Backspace') {
-				handleCommand('clear');
-			}
-
-			if (e.ctrlKey && e.key === '`') {
-				focus();
-			}
-		});
+		return () => {
+			document.removeEventListener('keydown', handleKeyDown);
+		};
 	});
 </script>
 

@@ -1,6 +1,7 @@
 <script>
 	import { IconPoint, IconCircleCheck, IconCircleX } from '@tabler/icons-svelte';
 	import { commandLine } from '$lib/store';
+	import { Skills } from '$lib';
 
 	const giveCurrentTime = () => {
 		const date = new Date();
@@ -41,7 +42,7 @@
 			</span>
 		</div>
 		<div class="text-3xl w-full h-fit">
-			{line.output}
+			<Skills />
 		</div>
 	{/each}
 </div>
