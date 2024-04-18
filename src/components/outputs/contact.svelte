@@ -1,4 +1,4 @@
-<div class="outline w-full h-96 p-2">
+<div class="w-full h-96 p-2">
 	<h1>Contact:</h1>
 	<span class="flex">
 		<h2>Name:</h2>
