@@ -1,8 +1,4 @@
 <script>
-	/**
-	 * Importing Material and AtomicBit components along with Svelte utilities and stores.
-	 * @type {import('svelte').SvelteComponent}
-	 */
 	import { Material, AtomicBit } from '$lib';
 	import { commandHistory, commandLine } from '$lib/store';
 	import { SvelteComponent, onMount, tick } from 'svelte';
