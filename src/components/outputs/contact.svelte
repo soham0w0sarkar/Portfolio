@@ -1,5 +1,6 @@
 <script>
 	import { tick } from 'svelte';
+	import { Loader } from '$lib';
 
 	let name = '';
 	let email = '';
@@ -12,11 +13,13 @@
 	let showEmail = false;
 	let showMessage = false;
 
-	let respose = '';
+	/**
+	 * @type {Response}
+	 */
+	let respose;
 
 	const focus = () => {
 		const inputElements = document.querySelectorAll('input');
-		console.log(inputElements);
 		inputElements[inputElements.length - 1]?.focus();
 	};
 
@@ -93,7 +96,9 @@
 		</span>
 	{/if}
 	{#if respose}
-		<span>{respose}</span>
+		<p>{respose}</p>
+	{:else}
+		<Loader />
 	{/if}
 </div>
 
