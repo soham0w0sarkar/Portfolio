@@ -33,14 +33,14 @@
 	};
 
 	$: isEmailValid = !!email.match(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/);
-	$: isNameValid = !!name;
-	$: isMessageValid = !!message;
+	$: isNameValid = !!name.trim();
+	$: isMessageValid = !!message.trim();
 </script>
 
 <div class="w-full text-3xl h-96 p-2 form">
 	<h1>Contact me</h1>
 	<span class="flex">
-		<h2 style="color: {isNameValid ? 'white' : 'red'}">Name:</h2>
+		<h2 class:shake={!isNameValid} style="color: {isNameValid ? 'white' : 'red'}">Name:</h2>
 		&nbsp;
 		<input
 			type="text"
@@ -58,7 +58,7 @@
 	</span>
 	{#if showEmail}
 		<span class="flex">
-			<h2 style="color: {isEmailValid ? 'white' : 'red'}">Email:</h2>
+			<h2 class:shake={!isEmailValid} style="color: {isEmailValid ? 'white' : 'red'}">Email:</h2>
 			&nbsp;
 			<input
 				type="email"
@@ -77,7 +77,9 @@
 	{/if}
 	{#if showMessage}
 		<span class="flex flex-col">
-			<h2 style="color: {isMessageValid ? 'white' : 'red'}">Message:</h2>
+			<h2 class:shake={!isMessageValid} style="color: {isMessageValid ? 'white' : 'red'}">
+				Message:
+			</h2>
 			<input
 				type="text"
 				class="inputs bg-inherit p-0 w-full border-0 text-2xl border-transparent focus:border-transparent focus:ring-0"
@@ -94,3 +96,27 @@
 		<span>{respose}</span>
 	{/if}
 </div>
+
+<style>
+	.shake {
+		animation: shake 0.4s ease-in-out;
+	}
+
+	@keyframes shake {
+		0% {
+			transform: translateX(0);
+		}
+		25% {
+			transform: translateX(-5px);
+		}
+		50% {
+			transform: translateX(5px);
+		}
+		75% {
+			transform: translateX(-5px);
+		}
+		100% {
+			transform: translateX(0);
+		}
+	}
+</style>
