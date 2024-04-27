@@ -1,5 +1,5 @@
 <script>
-	import { tick } from 'svelte';
+	import { tick, onMount } from 'svelte';
 	import { Loader } from '$lib';
 
 	let name = '';
@@ -13,6 +13,8 @@
 	let showEmail = false;
 	let showMessage = false;
 
+	let showLoader = false;
+
 	/**
 	 * @type {Response}
 	 */
@@ -24,6 +26,7 @@
 	};
 
 	const handleSendMail = async () => {
+		showLoader = true;
 		const response = await fetch('/api/sendMail', {
 			method: 'POST',
 			headers: {
@@ -38,6 +41,10 @@
 	$: isEmailValid = !!email.match(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/);
 	$: isNameValid = !!name.trim();
 	$: isMessageValid = !!message.trim();
+
+	onMount(() => {
+		focus();
+	});
 </script>
 
 <div class="w-full text-3xl h-96 p-2 form">
@@ -87,6 +94,7 @@
 				type="text"
 				class="inputs bg-inherit p-0 w-full border-0 text-2xl border-transparent focus:border-transparent focus:ring-0"
 				bind:value={message}
+				readonly={showLoader ? true : false}
 				on:keypress={async (e) => {
 					if (e.key === 'Enter' && isMessageValid) {
 						await handleSendMail();
@@ -97,7 +105,7 @@
 	{/if}
 	{#if respose}
 		<p>{respose}</p>
-	{:else}
+	{:else if showLoader}
 		<Loader />
 	{/if}
 </div>
