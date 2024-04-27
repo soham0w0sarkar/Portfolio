@@ -5,5 +5,6 @@ import Material from '../components/terminals/material.svelte';
 import AtomicBit from '../components/terminals/atomicBit.svelte';
 import Skills from '../components/outputs/skills.svelte';
 import Contact from '../components/outputs/contact.svelte';
+import Loader from '../components/loader.svelte';
 
-export { Terminal, Window, Material, AtomicBit, Skills, Contact };
+export { Terminal, Window, Material, AtomicBit, Skills, Contact, Loader };
