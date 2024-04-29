@@ -29,15 +29,13 @@
 				&nbsp;
 				<input
 					type="text"
-					class="inputs bg-inherit p-0 w-full border-0 text-2xl border-transparent focus:border-transparent focus:ring-0"
+					class="bg-inherit p-0 w-full border-0 text-2xl border-transparent focus:border-transparent focus:ring-0"
 					bind:value={line.command}
 					readonly={line.status !== 'current' ? true : false}
 				/>
 			</span>
 		</div>
-		<div class="text-3xl w-full h-fit pr-2 pl-2">
-			{line.output}
-		</div>
+		<div class="text-3xl w-full h-fit pr-2 pl-2"></div>
 	{/each}
 </div>
 
